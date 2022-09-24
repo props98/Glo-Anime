@@ -1,6 +1,6 @@
 'use strict';
 
-const slider() {
+const slider = function() {
     const swiper = new Swiper('.swiper', {
         pagination: {
             el: '.swiper-pagination',
