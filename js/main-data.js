@@ -1,5 +1,6 @@
 const mainData = () => {
-    
+    let preloder = document.querySelector('.preloder');
+
     function renderGanreList(ganres) {
         const dropDownBlock = document.querySelector('.header__menu .dropdown');
 
@@ -71,6 +72,10 @@ const mainData = () => {
                 element.style.backgroundImage = `url('${element.dataset.setbg}')`;
             });
         })
+
+        setTimeout(() => {
+            preloder.classList.remove('active');
+        }, 500);
     }
 
     function renderTopAnime(arr) {
