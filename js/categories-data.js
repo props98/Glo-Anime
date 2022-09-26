@@ -1,4 +1,6 @@
-const mainData = () => {
+'use strict';
+
+function categoriesData() {
     let preloder = document.querySelector('.preloder');
 
     function renderGanreList(ganres) {
@@ -12,13 +14,14 @@ const mainData = () => {
     }
 
     function renderAnimeList(arr, ganres) {
-        const wrapper = document.querySelector('.product .col-lg-8');
+        const wrapper = document.querySelector('.product-page .col-lg-8');
 
         ganres.forEach((ganre) => {
             const productBlock = document.createElement('div');
             const listBlock = document.createElement('div');
-            const list = arr.filter(item => item.ganre === ganre);
+            const list = arr.filter(item => item.tags.includes(ganre));
             
+
 
             listBlock.classList.add('row');
             productBlock.classList.add('mb-5');
@@ -66,6 +69,8 @@ const mainData = () => {
             })
 
             productBlock.append(listBlock);
+
+            console.log(wrapper);
             wrapper.append(productBlock);
 
             wrapper.querySelectorAll('.set-bg').forEach((element) => {
@@ -107,6 +112,9 @@ const mainData = () => {
         .then((data) => {
             const anime = data.anime;
             const genres = new Set();
+            const ganreParams = new URLSearchParams(window.location.search).get('ganre');
+
+            // console.log(ganreParams);
 
             anime.sort((a, b) => {
                 return b.views - a.views;
@@ -117,9 +125,16 @@ const mainData = () => {
             });
 
             renderTopAnime(anime.slice(0, 5));
-            renderAnimeList(data.anime, genres);
+
+            if (ganreParams) {
+                // console.log(ganreParams);
+                renderAnimeList(data.anime, [ganreParams]);
+            } else {
+                renderAnimeList(data.anime, genres);
+            };
+
             renderGanreList(genres);
         });
+};
 
-}
-mainData();
+categoriesData();
