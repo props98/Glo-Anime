@@ -21,18 +21,17 @@ function detailData() {
         const subTitleBlock = document.querySelector('.anime__details__title span');
         const descriptionBlock = document.querySelector('.anime__details__text p');
         const widgetList = document.querySelectorAll('.anime__details__widget ul li');
-        const breadcrumbs = document.querySelectorAll('.breadcrumb__links');
+        const breadcrumbs = document.querySelectorAll('.breadcrumb__links span');
 
         if (animeObj) {
             // console.log(animeObj);
 
-            imageBlock.dataset.setbg = animeObj.img;
+            imageBlock.dataset.setbg = animeObj.image;
             // viewsBlock.innerHTML = '';
             viewsBlock.insertAdjacentHTML('beforeend', `
                 <div class="view"><i class="fa fa-eye"></i> ${animeObj.views}</div>
             `);
-
-            // TODO ///////
+ 
             titleBlock.textContent = animeObj.title;
             subTitleBlock.textContent = animeObj['original-title'];
             descriptionBlock.textContent = animeObj.description;
@@ -47,6 +46,8 @@ function detailData() {
                 <span>Genre:</span> ${animeObj.tags.join(', ')}
             `)
 
+            console.log(breadcrumbs);
+            console.log(animeObj.ganre);
             // TODO ////
             breadcrumbs.textContent = animeObj.ganre;
 
