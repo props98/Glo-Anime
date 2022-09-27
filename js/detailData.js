@@ -21,7 +21,7 @@ function detailData() {
         const subTitleBlock = document.querySelector('.anime__details__title span');
         const descriptionBlock = document.querySelector('.anime__details__text p');
         const widgetList = document.querySelectorAll('.anime__details__widget ul li');
-        const breadcrumbs = document.querySelectorAll('.breadcrumb__links span');
+        const breadcrumbs = document.querySelector('.breadcrumb-option span');
 
         if (animeObj) {
             // console.log(animeObj);
@@ -29,7 +29,7 @@ function detailData() {
             imageBlock.dataset.setbg = animeObj.image;
             // viewsBlock.innerHTML = '';
             viewsBlock.insertAdjacentHTML('beforeend', `
-                <div class="view"><i class="fa fa-eye"></i> ${animeObj.views}</div>
+                <div><i class="fa fa-eye"></i> ${animeObj.views}</div>
             `);
  
             titleBlock.textContent = animeObj.title;
@@ -45,10 +45,7 @@ function detailData() {
             widgetList[2].insertAdjacentHTML('beforeend', `
                 <span>Genre:</span> ${animeObj.tags.join(', ')}
             `)
-
-            console.log(breadcrumbs);
-            console.log(animeObj.ganre);
-            // TODO ////
+            
             breadcrumbs.textContent = animeObj.ganre;
 
             document.querySelectorAll('.set-bg').forEach((element) => {
